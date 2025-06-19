@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "magpiebridge",
+  "version": "${version}",
+  "name": "MagpieBridge",
+  "description": "A bridge between in game chat and system notification",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/magpiebridge/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-datagen": [
+      "wen_wen520.magpiebridge.client.MagpiebridgeDataGenerator"
+    ],
+    "client": [
+      "wen_wen520.magpiebridge.client.MagpiebridgeClient"
+    ],
+    "main": [
+      "wen_wen520.magpiebridge.Magpiebridge"
+    ]
+  },
+  "mixins": [
+    "magpiebridge.mixins.json",
+    {
+      "config": "magpiebridge.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
