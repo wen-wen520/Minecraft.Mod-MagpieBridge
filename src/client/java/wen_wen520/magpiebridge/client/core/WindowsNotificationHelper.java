@@ -5,10 +5,10 @@ import java.io.IOException;
 public class WindowsNotificationHelper {
     private static final String TOAST_PATH = "D:\\Program Low\\toast.exe";
 
-    public static void sendNotification(String title, String message, String iconPath) {
+    public static void sendNotification(String app, String title, String message, String iconPath) {
         ProcessBuilder pb = new ProcessBuilder(
                 TOAST_PATH,
-                "-app-id", "Minecraft",
+                "-app-id", app,
                 "-t", title,
                 "-m", message,
                 "-icon", iconPath,
