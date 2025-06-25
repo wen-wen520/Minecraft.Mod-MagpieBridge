@@ -2,12 +2,14 @@ package wen_wen520.magpiebridge.client.core;
 
 import java.io.IOException;
 
+import static wen_wen520.magpiebridge.client.utils.Initializer.dir_bridge;
+
 public class WindowsNotificationHelper {
-    private static final String TOAST_PATH = "D:\\Program Low\\toast.exe";
+
 
     public static void sendNotification(String app, String title, String message, String iconPath) {
         ProcessBuilder pb = new ProcessBuilder(
-                TOAST_PATH,
+                dir_bridge.getAbsolutePath(),
                 "-app-id", app,
                 "-t", title,
                 "-m", message,

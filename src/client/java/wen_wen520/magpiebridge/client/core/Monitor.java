@@ -8,6 +8,8 @@ import wen_wen520.magpiebridge.client.utils.filter.GeneralFilter;
 import wen_wen520.magpiebridge.client.utils.filter.SkyBlockMsgFilter;
 import wen_wen520.magpiebridge.client.utils.filter.ZombieMsgFilter;
 
+import static wen_wen520.magpiebridge.client.utils.Initializer.dir_defaultHead;
+
 public class Monitor implements ClientModInitializer {
 
     @Override
@@ -18,16 +20,16 @@ public class Monitor implements ClientModInitializer {
             String chatText = message.getString();
             MessageParser.ParsedMessage parsed = MessageParser.parse(chatText);
             String senderName = sender.getName();
-            String headPath = "\"D:\\Program Low\\toast.png\"";
+            String headPath = dir_defaultHead.getAbsolutePath();
 
             try{
                 PlayerHeadExporter.fetchAndSavePlayerHeadAsync(senderName).thenAccept(path -> {
-                    WindowsNotificationHelper.sendNotification("Minecraft", "[C]" + senderName, parsed.msg, path);
+                    WindowsNotificationHelper.sendNotification("Minecraft", senderName, parsed.msg, path);
                 });
             }
             catch (Exception e) {
                 System.err.println("Failed to fetch player head for " + senderName + ": " + e.getMessage());
-                WindowsNotificationHelper.sendNotification("Minecraft", "[CE]" + senderName, parsed.msg, headPath);
+                WindowsNotificationHelper.sendNotification("Minecraft", senderName, parsed.msg, headPath);
             }
 
         });
@@ -38,7 +40,7 @@ public class Monitor implements ClientModInitializer {
                 return;
             }
 
-            String headPath = "\"D:\\Program Low\\toast.png\"";
+            String headPath = dir_defaultHead.getAbsolutePath();
             String chatText = GeneralFilter.filterMessage(message.getString());
             String[] NotificationMsg = null;
 
@@ -57,12 +59,12 @@ public class Monitor implements ClientModInitializer {
             try{
                 String[] finalNotificationMsg = NotificationMsg;
                 PlayerHeadExporter.fetchAndSavePlayerHeadAsync(NotificationMsg[1]).thenAccept(path -> {
-                    WindowsNotificationHelper.sendNotification(finalNotificationMsg[0],"[G]" + finalNotificationMsg[1], finalNotificationMsg[2], path);
+                    WindowsNotificationHelper.sendNotification(finalNotificationMsg[0], finalNotificationMsg[1], finalNotificationMsg[2], path);
                 });
             }
             catch (Exception e) {
                 System.err.println("Failed to fetch player head for " + NotificationMsg[1] + ": " + e.getMessage());
-                WindowsNotificationHelper.sendNotification(NotificationMsg[0],"[GE]" + NotificationMsg[1], NotificationMsg[2], headPath);
+                WindowsNotificationHelper.sendNotification(NotificationMsg[0], NotificationMsg[1], NotificationMsg[2], headPath);
             }
 
         });
