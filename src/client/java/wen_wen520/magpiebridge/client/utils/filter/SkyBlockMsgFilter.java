@@ -16,7 +16,7 @@ public class SkyBlockMsgFilter {
         if (m2.find()) return new String[] { "SkyBlock Player", m2.group(1).trim(), m2.group(2).trim() };
 
         // Bazaar or sell/system messages
-        if (original.startsWith("[Bazaar]") && !(original.startsWith("[Bazaar] Putting goods in escrow...") || original.startsWith("[Bazaar] Submitting sell offer...") || original.startsWith("[Bazaar] Claiming order...") || original.startsWith("[Bazaar] Claiming orders...") || original.startsWith("[Bazaar] Submitting buy orders..."))) return new String[] { "SkyBlock Bazaar", "Bazaar", original.replace("[Bazaar]", "").trim() };
+        if (original.startsWith("[Bazaar]") && !(original.startsWith("[Bazaar] Putting goods in escrow...") || original.startsWith("[Bazaar] Submitting sell offer") || original.startsWith("[Bazaar] Claiming order") || original.startsWith("[Bazaar] Claiming orders") || original.startsWith("[Bazaar] Submitting buy orders..."))) return new String[] { "SkyBlock Bazaar", "Bazaar", original.replace("[Bazaar]", "").trim() };
         if (original.startsWith("You sold")) return new String[] { "SkyBlock Bazaar", "Bazaar", original.trim() };
 
         // Ignore if not matched
