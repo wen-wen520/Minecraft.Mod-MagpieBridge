@@ -1,0 +1,45 @@
+name: 🐛 Bug Report
+description: Submit issues to improve the datapack stability
+title: "[Bug] Title"
+assignees: wen-wen520
+labels:
+  - "🐛 Bug"
+body:      
+- type: textarea
+  id: description
+  validations:
+    required: true
+  attributes:
+     label: Description
+     description: Please provide a brief description of the issue you encountered
+
+- type: textarea
+  id: screenshots
+  attributes:
+     label: Screenshots
+     description: If possible, submit screenshots to better illustrate the issue
+
+- type: textarea
+  id: recurrent
+  validations:
+    required: true
+  attributes:
+     label: Steps to Reproduce
+     description: Steps to reproduce the issue
+
+- type: checkboxes
+  id: target-game-version
+  attributes:
+    label: Game Version
+    description: Select the Minecraft client version where the issue was found (the right side is the format of mod)
+    options:
+      - label: "1.21 (47)"
+      - label: "1.21.1 (48)"
+      - label: "1.21.2 (57)"
+      - label: "1.21.3 (57)"
+      - label: "1.21.4 (61)"
+      - label: "1.21.5 (71)"
+      - label: "1.21.6 (80)"
+      - label: "1.21.7 (81)"
+  validations:
+    required: true
