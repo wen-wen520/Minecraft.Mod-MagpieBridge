@@ -1,0 +1,29 @@
+name: 💡 Feature Request
+description: Provide suggestions or ideas for the game
+title: "[Feature] Title"
+labels:
+  - "💡 Feature"
+assignees: wen-wen520
+body:
+
+- type: markdown
+  id: feature-request
+  attributes: 
+    value: |
+      ## Please describe your request in as much detail as possible
+
+- type: textarea
+  id: content
+  validations: 
+    required: true
+  attributes: 
+    label: Content
+    description: Please provide a detailed description of your request
+
+- type: textarea
+  id: necessarity
+  validations: 
+    required: true
+  attributes: 
+    label: Necessarity
+    description: Why do you think this feature is necessary?
