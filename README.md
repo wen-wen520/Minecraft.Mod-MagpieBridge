@@ -2,7 +2,7 @@
 🌐
 <a href="https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge">English</a>
 &nbsp;|&nbsp;
-<a href="README.zh.md">中文</a>
+<a href="https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/README.zh.md">中文</a>
 </div>
 
 <div align="center">
@@ -14,10 +14,37 @@
 
 </div>
 
+
 ## 📋 Overview
+
+Magpie Bridge is a lightweight Minecraft mod that brings your in-game chat messages directly to your desktop as system notifications!
 
 
 ## ❇️ Features
+
+- **Native Windows Notifications:**  
+  Seamlessly integrates with Windows 10 and 11 notification systems.
+- **Dark Mode Support:**  
+  Notifications match your system theme, including dark mode.
+- **Unified Notification Center:**  
+  All Minecraft chat notifications appear in your Windows Notification Center for easy management and review.
+- **Non-intrusive:**  
+  Stay focused on your game—never miss important messages without breaking immersion.
+
+
+## 🖼️ Gallery
+
+[Modrinth Gallery](https://modrinth.com/mod/magpiebridge/gallery)
+
+![Normal Mode]()
+
+<br>
+
+![Dark Mode]()
+
+<br>
+
+![Notification center]()
 
 
 ## ⚙️ Requirements
@@ -30,9 +57,13 @@ Fabric: 0.16.10 or higher
 
 ## ✅ Installation
 
+Modrinth [[⬇️ Download]](https://modrinth.com/mod/magpiebridge/versions) provides a modern UI to choose and download this mod
+
+Github [[📦 Releases]](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/releases) Page is good to get the source code and pack them by self
 
 ## 📃 Feeadbacks
 
+Welcome to [📑Issue Page](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/issues/new/choose) to submit any bugs or featuers.
 
 ## 📜 License
 
