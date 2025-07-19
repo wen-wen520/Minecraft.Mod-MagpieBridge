@@ -1,4 +1,4 @@
-package wen_wen520.magpiebridge.client.utils.filter;
+package wen_wen520.magpiebridge.client.filter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
