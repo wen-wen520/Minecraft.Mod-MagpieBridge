@@ -23,6 +23,9 @@ public class Initializer implements ClientModInitializer {
 		// Load Default Player Head
 		LoadResource("/assets/magpiebridge/client/default_player_head.png", dir_defaultHead);
 
+		//Load Filter String Lists
+		LoadResource("/assets/magpiebridge/client/black_list.json", new File(dir_config, "Filter/General/black_list.json"));
+
 		// Hook for deleting old heads
 		Runtime.getRuntime().addShutdownHook(new Thread(Initializer::ClearHeadsCache));
 	}

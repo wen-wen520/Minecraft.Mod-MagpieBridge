@@ -2,11 +2,11 @@ package wen_wen520.magpiebridge.client.core;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
+import wen_wen520.magpiebridge.client.filter.GeneralFilter;
+import wen_wen520.magpiebridge.client.filter.SkyBlockMsgFilter;
+import wen_wen520.magpiebridge.client.filter.ZombieMsgFilter;
 import wen_wen520.magpiebridge.client.utils.MessageParser;
 import wen_wen520.magpiebridge.client.utils.PlayerHeadExporter;
-import wen_wen520.magpiebridge.client.utils.filter.GeneralFilter;
-import wen_wen520.magpiebridge.client.utils.filter.SkyBlockMsgFilter;
-import wen_wen520.magpiebridge.client.utils.filter.ZombieMsgFilter;
 
 import static wen_wen520.magpiebridge.client.utils.Initializer.dir_defaultHead;
 
