@@ -2,7 +2,7 @@
 🌐
 <a href="https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge">English</a>
 &nbsp;|&nbsp;
-<a href="README.zh.md">中文</a>
+<a href="https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/README.zh.md">中文</a>
 </div>
 
 <div align="center">
