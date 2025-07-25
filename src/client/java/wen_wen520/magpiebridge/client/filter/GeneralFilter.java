@@ -6,15 +6,15 @@ import wen_wen520.magpiebridge.client.utils.FilterHelper;
 
 public class GeneralFilter {
 
-    private static final File filterFile = new File(Initializer.dir_config, "Filter/General/BlackList.json");
+    private static final File filterFile = new File(Initializer.dir_config, "Filters/General/BlackList.json");
     private static final String resourcePath = "/assets/magpiebridge/client/BlackList.json";
     private static FilterHelper blackList;
 
-    static {
-        blackList = new FilterHelper(filterFile, resourcePath);
-    }
 
     public static String filterMessage(String msg) {
+
+        blackList = new FilterHelper(filterFile);
+
         if (msg == null || msg.isEmpty()) return null;
         msg = msg.replaceAll("§.", "");
         if (msg.isEmpty()) return null;

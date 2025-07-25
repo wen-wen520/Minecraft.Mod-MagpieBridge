@@ -42,12 +42,12 @@ public class FilterHelper {
 
     private List<FilterRule> rules;
 
-    public FilterHelper(File configFile, String resourcePath) {
+    public FilterHelper(File configFile) {
         this.rules = new ArrayList<>();
-        loadConfig(configFile, resourcePath);
+        loadConfig(configFile);
     }
 
-    private void loadConfig(File configFile, String resourcePath) {
+    private void loadConfig(File configFile) {
         
         try (Reader reader = new InputStreamReader(new FileInputStream(configFile), "UTF-8")) {
             Gson gson = new Gson();
