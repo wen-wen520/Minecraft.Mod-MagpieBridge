@@ -20,6 +20,20 @@
 ## ❇️ 功能
 
 
+## 🖼️ 画廊
+
+[Modrinth 画廊](https://modrinth.com/mod/magpiebridge/gallery)
+
+![普通模式](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/assets/gallery/Introduction.jpg?raw=true)
+
+<br>
+
+![深色模式](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/assets/gallery/Dark%20Mode.jpg?raw=true)
+
+<br>
+
+![通知中心](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/assets/gallery/Norification%20Center.jpg?raw=true)
+
 ## ⚙️ 要求
 
 架构: 64位\
