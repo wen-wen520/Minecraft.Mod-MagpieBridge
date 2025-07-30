@@ -14,10 +14,20 @@
 
 </div>
 
-## 📋 总览
+## 📋 概览
 
+Magpie Bridge 是一个轻量级的 Minecraft 模组，可以将你的游戏内聊天消息直接推送到桌面作为系统通知！
 
 ## ❇️ 功能
+
+- **原生 Windows 通知：**
+  无缝集成到 Windows 10 和 11 的通知系统中。
+- **深色模式支持：**
+  通知会根据你的系统主题自动适配，包括深色模式。
+- **统一通知中心：**
+  所有 Minecraft 聊天通知都会出现在 Windows 通知中心，方便管理和查看。
+- **非侵入性体验：**
+  重要消息不错过，沉浸感不被打扰。
 
 
 ## 🖼️ 画廊
@@ -44,8 +54,22 @@ Fabric: 0.16.10 或更高
 
 ## ✅ 安装
 
+0. 检查你的设备和游戏版本是否符合本mod ⚙️ 要求
+
+1. 下载并安装适用于你的 Minecraft 版本的 [Fabric Loader](https://fabricmc.net/use/installer/)。
+
+2. 下载
+
+    Modrinth [[⬇️ 下载]](https://modrinth.com/mod/magpiebridge/versions) 提供了现代化的界面，方便你选择并下载本模组。
+
+    Github [[📦 发布页]](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/releases) 适合获取源代码并自行打包。
+
+3. 将该 `.jar` 文件放入你的 Minecraft `mods` 文件夹（Windows 系统一般路径为 `%appdata%/.minecraft/mods`）。
+4. 使用 Fabric 启动器启动 Minecraft，尽情享受吧！
 
 ## 📃 反馈
+
+欢迎前往 [📑问题页面](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/issues/new/choose) 提交任何 bug 或功能建议。
 
 
 ## 📜 许可
