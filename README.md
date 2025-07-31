@@ -52,7 +52,7 @@ Magpie Bridge is a lightweight Minecraft mod that brings your in-game chat messa
 Architecture: x64\
 System: Windows 10 version 15063.0 or higher\
 Java: Java 21\
-Minecraft: 1.21 - 1.21.7\
+Minecraft: 1.21 - 1.21.8\
 Fabric: 0.16.10 or higher
 
 ## ✅ Installation
