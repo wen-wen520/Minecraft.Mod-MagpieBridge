@@ -22,14 +22,12 @@ Magpie Bridge is a lightweight Minecraft mod that brings your in-game chat messa
 
 ## ❇️ Features
 
-- **Native Windows Notifications:**  
+- **Native Windows Notifications:**
   Seamlessly integrates with Windows 10 and 11 notification systems.
-- **Dark Mode Support:**  
+- **Dark Mode Support:**
   Notifications match your system theme, including dark mode.
-- **Unified Notification Center:**  
+- **Unified Notification Center:**
   All Minecraft chat notifications appear in your Windows Notification Center for easy management and review.
-- **Non-intrusive:**  
-  Stay focused on your game—never miss important messages without breaking immersion.
 
 
 ## 🖼️ Gallery
