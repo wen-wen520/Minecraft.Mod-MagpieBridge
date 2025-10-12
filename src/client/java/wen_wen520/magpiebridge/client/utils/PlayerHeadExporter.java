@@ -16,16 +16,17 @@ public class PlayerHeadExporter {
 
 	// [Async] Fetch and save player head image
 	public static CompletableFuture<String> fetchAndSavePlayerHeadAsync(String username) {
-		return CompletableFuture.supplyAsync(() -> {
-			try {
 
+		return CompletableFuture.supplyAsync(() -> {
+
+			try {
 				if (!dir_head.exists()) {
 					dir_head.mkdirs();
 				}
+
 				File outputFile = new File(dir_head, username + "_head.png");
 				String outputPath = outputFile.getAbsolutePath();
 
-				// If file exists, just return path
 				if (outputFile.exists()) {
 					return outputPath;
 				}
@@ -37,49 +38,56 @@ public class PlayerHeadExporter {
 				saveHead(head, outputPath);
 
 				return outputPath;
-			} catch (Exception e) {
+			}
+
+			catch (Exception e) {
 				e.printStackTrace();
 				System.err.println("Failed to fetch or save player head for " + username + ": " + e.getMessage());
 				return null;
 			}
+
 		});
 	}
 
-
-	// Helper Methods
-
 	// Fetch UUID
 	private static String getUUID(String username) throws IOException {
-		URL url = new URL("https://api.mojang.com/users/profiles/minecraft/" + username);
+		URL url = URI.create("https://api.mojang.com/users/profiles/minecraft/" + username).toURL();
 		JsonObject json = JsonParser.parseReader(new InputStreamReader(url.openStream())).getAsJsonObject();
 		return json.get("id").getAsString();
 	}
 
 	// Fetch skin URL
 	private static String getSkinUrl(String uuid) throws IOException {
-		URL url = new URL("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid);
+
+		URL url = URI.create("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid).toURL();
 		JsonObject json = JsonParser.parseReader(new InputStreamReader(url.openStream())).getAsJsonObject();
 		JsonArray properties = json.getAsJsonArray("properties");
+
 		for (JsonElement propElement : properties) {
+
 			JsonObject prop = propElement.getAsJsonObject();
+
 			if ("textures".equals(prop.get("name").getAsString())) {
 				String value = prop.get("value").getAsString();
 				String decoded = new String(Base64.getDecoder().decode(value));
 				JsonObject textures = JsonParser.parseString(decoded).getAsJsonObject();
+
 				return textures.getAsJsonObject("textures").getAsJsonObject("SKIN").get("url").getAsString();
 			}
 		}
+
 		throw new IOException("Skin URL not found");
 	}
 
 	// Download skin image
 	private static BufferedImage downloadSkin(String skinUrl) throws IOException {
-		URL url = new URL(skinUrl);
+		URL url = URI.create(skinUrl).toURL();
 		return ImageIO.read(url);
 	}
 
 	// Extract and scale head from skin image
 	private static BufferedImage extractAndScaleHead(BufferedImage skin) {
+
 		BufferedImage headBase = skin.getSubimage(8, 8, 8, 8);
 		BufferedImage headOverlay = skin.getSubimage(40, 8, 8, 8);
 

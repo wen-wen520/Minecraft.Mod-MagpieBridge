@@ -12,11 +12,11 @@ import java.util.regex.Pattern;
 public class FilterHelper {
 
     public static class FilterRule {
+
         public String string;
         public int filter_type;
         public boolean filtered;
 
-        // For regex optimization
         private Pattern pattern;
 
         public boolean matches(String msg) {
