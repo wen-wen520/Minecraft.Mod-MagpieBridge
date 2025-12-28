@@ -1,51 +1,52 @@
 {
   "infomation": {
     "name": "General Black List",
-    "description": "This file contains strings that will be filtered out in general chat messages.",
+    "description": "This file contains strings that will be enabled out in general chat messages.",
     "version": "1.0",
     "author": "wen_wen520"
   },
   "guide":{
     "string": "This file is used to filter out specific strings in general chat messages.",
-    "filter_type": [
+    "type": [
       {"type": "equals","description": "Filters messages that are exactly equal to the specified string.","id": 0},
       {"type": "contains","description": "Filters messages that contain the specified string.","id": 1},
       {"type": "starts_with","description": "Filters messages that start with the specified string.","id": 2},
       {"type": "ends_with","description": "Filters messages that end with the specified string.","id": 3},
       {"type": "regex","description": "Filters messages that match the specified regular expression.","id": 4}
     ],
-    "filtered": "if is set to true, the string will be filtered out."
+    "enabled": "if is set to true, the string will be filtered out."
   },
+  "white_list": false,
   "filter_strings": [
     {
       "string": "joined the lobby!",
-      "filter_type": 1,
-      "filtered": true
+      "type": 1,
+      "enabled": true
     },
     {
       "string": "unclaimed",
-      "filter_type": 1,
-      "filtered": true
+      "type": 1,
+      "enabled": true
     },
     {
       "string": "Warping you to",
-      "filter_type": 1,
-      "filtered": true
+      "type": 1,
+      "enabled": true
     },
     {
       "string": "You have",
-      "filter_type": 1,
-      "filtered": true
+      "type": 1,
+      "enabled": true
     },
     {
       "string": "Sending to ",
-      "filter_type": 1,
-      "filtered": true
+      "type": 1,
+      "enabled": true
     },
     {
       "string": "Welcome to ",
-      "filter_type": 1,
-      "filtered": true
+      "type": 1,
+      "enabled": true
     }
   ]
 }
