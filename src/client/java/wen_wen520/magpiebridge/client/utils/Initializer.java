@@ -1,14 +1,14 @@
 package wen_wen520.magpiebridge.client.utils;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.minecraft.client.MinecraftClient;
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
 
 public class Initializer implements ClientModInitializer {
 
 	// Global Attributes
-	public static final File dir_game = MinecraftClient.getInstance().runDirectory;
+	public static final File dir_game = FabricLoader.getInstance().getGameDir().toFile();
 	public static final File dir_config = new File(dir_game, "config/magpiebridge");
 	public static final File dir_bridge = new File(dir_config, "Bridge/toast.exe");
 	public static final File dir_head = new File(dir_config, "Cache Heads");
@@ -33,25 +33,53 @@ public class Initializer implements ClientModInitializer {
 
 	// Helper Methods
 
+	// Clear Config Directory
+	public static void ClearConfigDirectory() {
+		if (dir_config.exists() && dir_config.isDirectory())
+		{
+			DeleteRecursively(dir_config);
+		}
+		dir_config.mkdirs();
+	}
+
 	// Clear Heads Cache Directory
 	public static void ClearHeadsCache() {
 		if (dir_head.exists() && dir_head.isDirectory())
 		{
-			File[] files = dir_head.listFiles();
-			if (files != null)
-			{
-				for (File file : files)
-				{
-					if (file.isFile())
-					{
-						file.delete();
-					}
-				}
-			}
+			DeleteRecursively(dir_head, false);
 		}
 		else
 		{
 			dir_head.mkdirs();
+		}
+	}
+
+	// Delete target recursively.
+	private static void DeleteRecursively(File target) {
+		DeleteRecursively(target, true);
+	}
+
+	private static void DeleteRecursively(File target, boolean deleteSelf) {
+		if (target == null || !target.exists())
+		{
+			return;
+		}
+
+		if (target.isDirectory())
+		{
+			File[] files = target.listFiles();
+			if (files != null)
+			{
+				for (File file : files)
+				{
+					DeleteRecursively(file, true);
+				}
+			}
+		}
+
+		if (deleteSelf)
+		{
+			target.delete();
 		}
 	}
 

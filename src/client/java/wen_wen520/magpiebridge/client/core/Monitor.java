@@ -2,6 +2,7 @@ package wen_wen520.magpiebridge.client.core;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
+import wen_wen520.magpiebridge.MagpieBridgeConfig;
 import wen_wen520.magpiebridge.client.filter.GeneralFilter;
 import wen_wen520.magpiebridge.client.filter.SkyBlockMsgFilter;
 import wen_wen520.magpiebridge.client.filter.ZombieMsgFilter;
@@ -17,15 +18,20 @@ public class Monitor implements ClientModInitializer {
 		// Listen for chat messages
 		ClientReceiveMessageEvents.CHAT.register((message, signedMessage, sender, params, _temp) -> {
 
+			MagpieBridgeConfig config = MagpieBridgeConfig.get();
+			if (!config.notificationsEnabled || !config.playerNotifications) {
+				return;
+			}
+
 			String chatText = message.getString();
 			MessageParser.ParsedMessage parsed = MessageParser.parse(chatText);
 			String senderName = sender.getName();
 			String headPath = dir_defaultHead.getAbsolutePath();
 
-			try{
-				PlayerHeadExporter.fetchAndSavePlayerHeadAsync(senderName).thenAccept(path -> {
-					WindowsNotificationHelper.sendNotification("Minecraft", senderName, parsed.msg, path);
-				});
+			try {
+				PlayerHeadExporter.fetchAndSavePlayerHeadAsync(senderName).thenAccept(path ->
+					WindowsNotificationHelper.sendNotification("Minecraft", senderName, parsed.msg, path)
+				);
 			}
 			catch (Exception e) {
 				System.err.println("Failed to fetch player head for " + senderName + ": " + e.getMessage());
@@ -37,6 +43,11 @@ public class Monitor implements ClientModInitializer {
 		ClientReceiveMessageEvents.GAME.register((message, overlay) ->{
 
 			if (overlay) {
+				return;
+			}
+
+			MagpieBridgeConfig config = MagpieBridgeConfig.get();
+			if (!config.notificationsEnabled) {
 				return;
 			}
 
@@ -53,6 +64,11 @@ public class Monitor implements ClientModInitializer {
 				NotificationMsg = ZombieMsgFilter.filterMessage(chatText);
 			}
 			if (NotificationMsg == null) {
+				return;
+			}
+
+			boolean isBazaar = "SkyBlock Bazaar".equals(NotificationMsg[0]);
+			if ((isBazaar && !config.bazaarNotifications) || (!isBazaar && !config.playerNotifications)) {
 				return;
 			}
 

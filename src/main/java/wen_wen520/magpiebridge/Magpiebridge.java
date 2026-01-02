@@ -4,7 +4,10 @@ import net.fabricmc.api.ModInitializer;
 
 public class Magpiebridge implements ModInitializer {
 
+    public static final String MOD_ID = "magpiebridge";
+
     @Override
     public void onInitialize() {
+        MagpieBridgeConfig.get();
     }
 }
