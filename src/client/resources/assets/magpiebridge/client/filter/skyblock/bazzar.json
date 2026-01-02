@@ -1,0 +1,24 @@
+{
+  "information": {
+    "name": "SkyBlock Bazaar White List",
+    "description": "Whitelist for SkyBlock Bazaar messages. Only messages that match enabled rules will be allowed through.",
+    "version": "1.0",
+    "author": "wen_wen520"
+  },
+  "guide": {
+    
+  },
+  "white_list": true,
+  "filter_rules": [
+    {
+      "string": "[Bazaar]",
+      "type": 1,
+      "enabled": true
+    },
+    {
+      "string": "You sold",
+      "type": 1,
+      "enabled": true
+    }
+  ]
+}
