@@ -3,6 +3,7 @@ package wen_wen520.magpiebridge;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
+
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.BufferedReader;
@@ -28,6 +29,7 @@ public final class MagpieBridgeConfig {
     public boolean notificationsEnabled;
     public boolean playerNotifications;
     public boolean bazaarNotifications;
+    public boolean auctionNotifications;
 
     private MagpieBridgeConfig() {
         this.modVersion = detectCurrentVersion();
@@ -35,6 +37,7 @@ public final class MagpieBridgeConfig {
         this.notificationsEnabled = true;
         this.playerNotifications = true;
         this.bazaarNotifications = true;
+        this.auctionNotifications = true;
     }
 
     public static synchronized MagpieBridgeConfig get() {
