@@ -1,0 +1,12 @@
+{
+  "command.magpiebridge.label.keepConfigDir": "[MagpieBridge] force to keep old configs (§4please keep disable status§r)",
+  "command.magpiebridge.label.desktopNotifications": "[MagpieBridge] desktop notifications",
+  "command.magpiebridge.label.skyblock.player": "[MagpieBridge] SkyBlock Player notifications",
+  "command.magpiebridge.label.skyblock.bazaar": "[MagpieBridge] SkyBlock Bazaar notifications",
+  "command.magpiebridge.label.skyblock.auction": "[MagpieBridge] SkyBlock Auction notifications",
+
+  "command.magpiebridge.message.status.enabled": "%s is currently §aenabled§r.",
+  "command.magpiebridge.message.status.disabled": "%s is currently §cdisabled§r.",
+  "command.magpiebridge.message.update.enabled": "%s has been §aenabled§r.",
+  "command.magpiebridge.message.update.disabled": "%s has been §cdisabled§r."
+}

@@ -40,7 +40,7 @@ public class Monitor implements ClientModInitializer {
 
 		});
 
-		ClientReceiveMessageEvents.GAME.register((message, overlay) ->{
+		ClientReceiveMessageEvents.GAME.register((message, overlay) -> {
 
 			if (overlay) {
 				return;
@@ -72,11 +72,11 @@ public class Monitor implements ClientModInitializer {
 				return;
 			}
 
-			try{
+			try {
 				String[] finalNotificationMsg = NotificationMsg;
-				PlayerHeadExporter.fetchAndSavePlayerHeadAsync(NotificationMsg[1]).thenAccept(path -> {
-					WindowsNotificationHelper.sendNotification(finalNotificationMsg[0], finalNotificationMsg[1], finalNotificationMsg[2], path);
-				});
+				PlayerHeadExporter.fetchAndSavePlayerHeadAsync(NotificationMsg[1]).thenAccept(path ->
+					WindowsNotificationHelper.sendNotification(finalNotificationMsg[0], finalNotificationMsg[1], finalNotificationMsg[2], path)
+				);
 			}
 			catch (Exception e) {
 				System.err.println("Failed to fetch player head for " + NotificationMsg[1] + ": " + e.getMessage());

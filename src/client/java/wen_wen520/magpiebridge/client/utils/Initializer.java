@@ -2,6 +2,7 @@ package wen_wen520.magpiebridge.client.utils;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import wen_wen520.magpiebridge.client.core.Command;
 
 import java.io.*;
 
@@ -17,6 +18,9 @@ public class Initializer implements ClientModInitializer {
 	// Initialize Resources
 	@Override
 	public void onInitializeClient() {
+		// Register Commands
+		Command.register();
+
 		// Load Bridge
 		LoadResource("/assets/magpiebridge/client/toast.exe", dir_bridge);
 

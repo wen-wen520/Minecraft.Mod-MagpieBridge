@@ -1,0 +1,12 @@
+{
+  "command.magpiebridge.label.keepConfigDir": "[鹊桥通知] 强制保留旧配置 (§4请保持禁用状态§r)",
+  "command.magpiebridge.label.desktopNotifications": "[鹊桥通知] 桌面通知",
+  "command.magpiebridge.label.skyblock.player": "[鹊桥通知] 空岛玩家通知",
+  "command.magpiebridge.label.skyblock.bazaar": "[鹊桥通知] 空岛商人通知",
+  "command.magpiebridge.label.skyblock.auction": "[鹊桥通知] 空岛拍卖行通知",
+
+  "command.magpiebridge.message.status.enabled": "%s 当前为 §a启用§r 状态。",
+  "command.magpiebridge.message.status.disabled": "%s 当前为 §c禁用§r 状态。",
+  "command.magpiebridge.message.update.enabled": "%s 已 §a启用§r。",
+  "command.magpiebridge.message.update.disabled": "%s 已 §c禁用§r。"
+}
