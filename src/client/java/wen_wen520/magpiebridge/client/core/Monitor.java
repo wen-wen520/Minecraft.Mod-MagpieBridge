@@ -25,7 +25,7 @@ public class Monitor implements ClientModInitializer {
 
 			String chatText = message.getString();
 			MessageParser.ParsedMessage parsed = MessageParser.parse(chatText);
-			String senderName = sender.getName();
+			String senderName = sender.name();
 			String headPath = dir_defaultHead.getAbsolutePath();
 
 			try {
