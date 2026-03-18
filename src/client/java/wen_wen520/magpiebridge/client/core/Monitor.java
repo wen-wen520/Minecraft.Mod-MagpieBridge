@@ -78,6 +78,18 @@ public class Monitor implements ClientModInitializer {
 			if (NotificationMsg == null){
 				NotificationMsg = ZombieMsgFilter.filterMessage(chatText);
 			}
+
+			// Fallback: Parse non-Hypixel chat forwarded as GAME events
+			// (e.g., from servers using No Chat Reports to bypass chat signing)
+			if (NotificationMsg == null && config.playerNotifications) {
+				wen_wen520.magpiebridge.client.utils.MessageParser.ParsedMessage parsed = wen_wen520.magpiebridge.client.utils.MessageParser.parse(chatText);
+				if (!parsed.msg.isEmpty() && !parsed.sender.equals(chatText)) {
+					if (parsed.sender.length() <= 32) {
+						NotificationMsg = new String[]{"Minecraft", parsed.sender, parsed.msg};
+					}
+				}
+			}
+
 			if (NotificationMsg == null) {
 				return;
 			}
