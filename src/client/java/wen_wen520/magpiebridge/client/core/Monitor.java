@@ -23,9 +23,19 @@ public class Monitor implements ClientModInitializer {
 				return;
 			}
 
+			net.minecraft.client.MinecraftClient client = net.minecraft.client.MinecraftClient.getInstance();
+			if (!config.pushWhenForeground && client.isWindowFocused()) {
+				return;
+			}
+
 			String chatText = message.getString();
 			MessageParser.ParsedMessage parsed = MessageParser.parse(chatText);
-			String senderName = sender.name();
+			String senderName = (sender != null && sender.name() != null) ? sender.name() : parsed.sender;
+
+			if (client.player != null && senderName.equals(client.player.getName().getString())) {
+				return;
+			}
+
 			String headPath = dir_defaultHead.getAbsolutePath();
 
 			try {
@@ -51,6 +61,11 @@ public class Monitor implements ClientModInitializer {
 				return;
 			}
 
+			net.minecraft.client.MinecraftClient client = net.minecraft.client.MinecraftClient.getInstance();
+			if (!config.pushWhenForeground && client.isWindowFocused()) {
+				return;
+			}
+
 			String headPath = dir_defaultHead.getAbsolutePath();
 			String chatText = GeneralFilter.filterMessage(message.getString());
 			String[] NotificationMsg = null;
@@ -64,6 +79,10 @@ public class Monitor implements ClientModInitializer {
 				NotificationMsg = ZombieMsgFilter.filterMessage(chatText);
 			}
 			if (NotificationMsg == null) {
+				return;
+			}
+
+			if (client.player != null && NotificationMsg[1].equals(client.player.getName().getString())) {
 				return;
 			}
 
