@@ -30,6 +30,7 @@ public final class MagpieBridgeConfig {
     public boolean playerNotifications;
     public boolean bazaarNotifications;
     public boolean auctionNotifications;
+    public boolean pushWhenForeground;
 
     private MagpieBridgeConfig() {
         this.modVersion = detectCurrentVersion();
@@ -38,6 +39,7 @@ public final class MagpieBridgeConfig {
         this.playerNotifications = true;
         this.bazaarNotifications = true;
         this.auctionNotifications = true;
+        this.pushWhenForeground = false;
     }
 
     public static synchronized MagpieBridgeConfig get() {
