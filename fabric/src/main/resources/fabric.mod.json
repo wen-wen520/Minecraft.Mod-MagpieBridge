@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "magpie_bridge",
+  "version": "${version}",
+  "name": "Magpie Bridge",
+  "description": "A bridge between in game chat and system notification",
+  "authors": [
+    "wen_wen520"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/magpiebridge"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.wen_wen520.magpie_bridge.fabric.MainFabric"
+    ],
+    "client": [
+      "io.github.wen_wen520.magpie_bridge.fabric.client.MainFabricClient"
+    ]
+  },
+  "mixins": [
+    "magpie_bridge.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "~1.20",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

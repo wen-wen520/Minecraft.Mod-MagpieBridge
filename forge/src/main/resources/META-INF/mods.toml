@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[46,)"
+issueTrackerURL = "https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/issues"
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "magpie_bridge"
+version = "${version}"
+displayName = "Magpie Bridge"
+authors = "wen_wen520"
+description = '''
+A bridge between in game chat and system notification
+'''
+logoFile = "/assets/icon.png"
+
+[[dependencies.magpie_bridge]]
+modId = "forge"
+mandatory = true
+versionRange = "[46,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.magpie_bridge]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20,)"
+ordering = "NONE"
+side = "BOTH"
+
