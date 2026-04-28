@@ -1,0 +1,88 @@
+name: Automatic Build on Push
+
+on:
+  push:
+    branches:
+      - '*'
+
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Compose CI mod version
+        if: github.event_name == 'push'
+        shell: pwsh
+        run: |
+          $baseVersion = (Get-Content gradle.properties | Where-Object { $_ -match '^mod_version=' }) -replace '^mod_version=', ''
+          if (-not $baseVersion) { throw "mod_version not found in gradle.properties" }
+          "ORG_GRADLE_PROJECT_mod_version=$baseVersion-alpha$env:GITHUB_RUN_NUMBER" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Build with Gradle
+        shell: pwsh
+        run: .\gradlew.bat clean build --stacktrace --no-daemon
+
+      - name: Collect release jars
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path artifacts -Force | Out-Null
+          $libsDirs = @(
+            'fabric/build/libs',
+            'forge/build/libs',
+            'common/build/libs',
+            'neoforge/build/libs'
+          )
+          foreach ($dir in $libsDirs) {
+            if (Test-Path $dir) {
+              Get-ChildItem -Path $dir -File -Filter '*.jar' |
+                Where-Object {
+                  $_.Name -notlike '*-sources.jar' -and
+                  $_.Name -notlike '*-javadoc.jar' -and
+                  $_.Name -notlike '*-dev.jar' -and
+                  $_.Name -notlike '*-dev-shadow.jar' -and
+                  $_.Name -notlike '*transformProduction*.jar'
+                } |
+                Copy-Item -Destination 'artifacts' -Force
+            }
+          }
+
+      - name: Generate checksums
+        shell: pwsh
+        run: |
+          $output = 'artifacts/SHA256SUMS.txt'
+          $jarFiles = Get-ChildItem -Path 'artifacts' -File -Filter '*.jar' | Sort-Object Name
+          if (-not $jarFiles) { throw 'No jar files found in artifacts directory.' }
+          $lines = foreach ($file in $jarFiles) {
+            $hash = (Get-FileHash -Algorithm SHA256 -Path $file.FullName).Hash.ToLowerInvariant()
+            "$hash  $($file.Name)"
+          }
+          Set-Content -Path $output -Value $lines
+
+      - name: Capture Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mod-Jars
+          path: artifacts/
+          if-no-files-found: error

@@ -1,0 +1,133 @@
+name: Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      mod_name_full:
+        description: 'Complete mod name (optional, if set, will override mod_name-mod_version)'
+        required: false
+        type: string
+      mod_name:
+        description: 'Mod name (used if mod_name_full is not set)'
+        required: false
+        type: string
+      mod_version:
+        description: 'Mod version (used if mod_name_full is not set)'
+        required: false
+        type: string
+      is_suffix_required:
+        description: 'Add build suffix (-buildGITHUB_RUN_NUMBER)'
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Compose CI mod version
+        shell: pwsh
+        run: |
+          # Get inputs from workflow_dispatch if available
+          $mod_name_full = '${{ inputs.mod_name_full }}'
+          $mod_name = '${{ inputs.mod_name }}'
+          $mod_version = '${{ inputs.mod_version }}'
+          $is_suffix_required = '${{ inputs.is_suffix_required }}' -eq 'true'
+          
+          # Determine the final mod version
+          if ($mod_name_full) {
+            # If mod_name_full is provided, use it directly
+            $finalModVersion = $mod_name_full
+          } else {
+            # Otherwise, read default values from gradle.properties
+            $baseModname = (Get-Content gradle.properties | Where-Object { $_ -match '^archives_name=' }) -replace '^archives_name=', ''
+            $baseVersion = (Get-Content gradle.properties | Where-Object { $_ -match '^mod_version=' }) -replace '^mod_version=', ''
+            
+            # Override with inputs if provided (either or both can be provided)
+            if ($mod_name) { $baseModname = $mod_name }
+            if ($mod_version) { $baseVersion = $mod_version }
+            
+            # Validate that we have both required values
+            if (-not $baseModname -or -not $baseVersion) { 
+              throw "Could not determine mod_name and mod_version from inputs or gradle.properties" 
+            }
+            
+            # Compose as mod_name-mod_version
+            $finalModVersion = "$baseModname-$baseVersion"
+          }
+          
+          # Add build suffix if required (applies to both mod_name_full and mod_name-mod_version cases)
+          if ($is_suffix_required) {
+            $finalModVersion = "$finalModVersion-build$env:GITHUB_RUN_NUMBER"
+          }
+          
+          "ORG_GRADLE_PROJECT_mod_version=$finalModVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Build with Gradle
+        shell: pwsh
+        run: .\gradlew.bat clean build --stacktrace --no-daemon
+
+      - name: Collect release jars
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path artifacts -Force | Out-Null
+          $libsDirs = @(
+            'fabric/build/libs',
+            'forge/build/libs',
+            'common/build/libs',
+            'neoforge/build/libs'
+          )
+          foreach ($dir in $libsDirs) {
+            if (Test-Path $dir) {
+              Get-ChildItem -Path $dir -File -Filter '*.jar' |
+                Where-Object {
+                  $_.Name -notlike '*-sources.jar' -and
+                  $_.Name -notlike '*-javadoc.jar' -and
+                  $_.Name -notlike '*-dev.jar' -and
+                  $_.Name -notlike '*-dev-shadow.jar' -and
+                  $_.Name -notlike '*transformProduction*.jar'
+                } |
+                Copy-Item -Destination 'artifacts' -Force
+            }
+          }
+
+      - name: Generate checksums
+        shell: pwsh
+        run: |
+          $output = 'artifacts/SHA256SUMS.txt'
+          $jarFiles = Get-ChildItem -Path 'artifacts' -File -Filter '*.jar' | Sort-Object Name
+          if (-not $jarFiles) { throw 'No jar files found in artifacts directory.' }
+          $lines = foreach ($file in $jarFiles) {
+            $hash = (Get-FileHash -Algorithm SHA256 -Path $file.FullName).Hash.ToLowerInvariant()
+            "$hash  $($file.Name)"
+          }
+          Set-Content -Path $output -Value $lines
+
+      - name: Capture Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mod-Jars
+          path: artifacts/
+          if-no-files-found: error
