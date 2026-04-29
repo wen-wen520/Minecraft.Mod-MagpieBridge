@@ -34,15 +34,15 @@ Magpie Bridge is a lightweight Minecraft mod that brings your in-game chat messa
 
 [Modrinth Gallery](https://modrinth.com/mod/magpiebridge/gallery)
 
-![Normal Mode](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/assets/gallery/Introduction.jpg?raw=true)
+![Normal Mode](assets/gallery/Introduction.jpg)
 
 <br>
 
-![Dark Mode](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/assets/gallery/Dark%20Mode.jpg?raw=true)
+![Dark Mode](assets/gallery/Dark%20Mode.jpg)
 
 <br>
 
-![Notification center](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/assets/gallery/Norification%20Center.jpg?raw=true)
+![Notification center](assets/gallery/Notification%20Center.jpg)
 
 
 ## ⚙️ Requirements
@@ -87,7 +87,7 @@ Welcome to [📑Issue Page](https://github.com/wen-wen520/Minecraft.Mod-MagpieBr
 
 ## 📜 License
 
-[All rights reserved.](LICENSE.md)
+[All rights reserved.](LICENSE.txt)
 
 ## 🎉 Thanks & Related Resource
 
