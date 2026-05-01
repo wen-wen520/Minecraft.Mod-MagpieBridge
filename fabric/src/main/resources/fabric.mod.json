@@ -11,7 +11,7 @@
     "homepage": "https://modrinth.com/mod/magpiebridge"
   },
   "license": "All-Rights-Reserved",
-  "icon": "icon.png",
+  "icon": "/assets/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -19,6 +19,9 @@
     ],
     "client": [
       "io.github.wen_wen520.magpie_bridge.fabric.client.MainFabricClient"
+    ],
+    "modmenu": [
+      "io.github.wen_wen520.magpie_bridge.fabric.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -28,9 +31,10 @@
     "fabricloader": ">=0.14.21",
     "minecraft": "~1.20",
     "java": ">=17",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "cloth-config-fabric": "*"
   },
   "suggests": {
-    "another-mod": "*"
+    "modmenu": ">=7.0.0"
   }
 }
