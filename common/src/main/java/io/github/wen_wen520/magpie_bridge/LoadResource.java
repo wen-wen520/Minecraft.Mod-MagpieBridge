@@ -1,13 +1,10 @@
-package io.github.wen_wen520.magpie_bridge.resource;
+package io.github.wen_wen520.magpie_bridge;
 
-import java.io.IOException;
-import java.nio.file.Files;
 
 import net.minecraft.Util;
 
-import io.github.wen_wen520.magpie_bridge.Main;
-import io.github.wen_wen520.magpie_bridge.Utils;
-
+import java.io.IOException;
+import java.nio.file.Files;
 
 public final class LoadResource {
 
@@ -18,7 +15,7 @@ public final class LoadResource {
 			Files.createDirectories(Main.CACHE_HEADS_DIR);
 			Files.createDirectories(Main.DEFAULT_HEAD_DIR);
 			Files.createDirectories(Main.BRIDGE_DIR);
-			Utils.loadFiles("/assets/default_player_head.png", Main.DEFAULT_HEAD);
+			Utils.loadFiles("/assets/magpie_bridge/default_player_head.png", Main.DEFAULT_HEAD);
 			initBridge();
 		} catch (IOException e) {
 			throw new RuntimeException("[Error] Failed to initiate resources" + e);
@@ -58,7 +55,7 @@ public final class LoadResource {
 	// Load the bridge to targeted platform
 	private static void initBridge() throws IOException, RuntimeException {
 		if (Util.getPlatform() == Util.OS.WINDOWS) {
-			Utils.loadFiles("/assets/toast.exe", Main.BRIDGE_WIN);
+			Utils.loadFiles("/assets/magpie_bridge/toast.exe", Main.BRIDGE_WIN);
 		}
 		else if (Util.getPlatform() == Util.OS.OSX) {
 			throw new RuntimeException("[Error] Mac OS is not supported");

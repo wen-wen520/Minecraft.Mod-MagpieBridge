@@ -11,7 +11,7 @@
     "homepage": "https://modrinth.com/mod/magpiebridge"
   },
   "license": "All-Rights-Reserved",
-  "icon": "/assets/icon.png",
+  "icon": "assets/magpie_bridge/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [

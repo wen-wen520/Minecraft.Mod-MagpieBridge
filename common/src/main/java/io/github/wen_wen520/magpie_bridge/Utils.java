@@ -3,9 +3,7 @@ package io.github.wen_wen520.magpie_bridge;
 import java.io.*;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
-
 import net.minecraft.client.Minecraft;
-
 import org.jetbrains.annotations.NotNull;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 
@@ -24,6 +22,18 @@ public final class Utils {
 
 	public static boolean isForeground() {
 		return Minecraft.getInstance().isWindowActive();
+	}
+
+	public static boolean isNotificationOn() {
+		if (!Main.Settings.main_toggle) {
+			return false;
+		}
+
+		if (Main.Settings.only_background && Utils.isForeground()) {
+			return false;
+		}
+
+		return true;
 	}
 
 	// Files System

@@ -1,4 +1,4 @@
-package io.github.wen_wen520.magpie_bridge.utils;
+package io.github.wen_wen520.magpie_bridge;
 
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;

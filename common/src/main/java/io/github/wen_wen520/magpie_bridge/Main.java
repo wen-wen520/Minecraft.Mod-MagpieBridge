@@ -1,12 +1,10 @@
 package io.github.wen_wen520.magpie_bridge;
 
 import java.nio.file.Path;
-
-import io.github.wen_wen520.magpie_bridge.resource.LoadResource;
-import io.github.wen_wen520.magpie_bridge.settings.MainSettings;
-
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Main {
 	public static final String MOD_ID = "magpie_bridge";
@@ -17,6 +15,8 @@ public final class Main {
 	public static final Path DEFAULT_HEAD = DEFAULT_HEAD_DIR.resolve("default_player_head.png");
 	public static final Path BRIDGE_DIR = CONFIG_DIR.resolve("bridge");
 	public static final Path BRIDGE_WIN = BRIDGE_DIR.resolve("toast.exe");
+
+	public static final Logger LOGGER = LoggerFactory.getLogger("MagpieBridge");
 
 	public static MainSettings Settings;
 
@@ -33,6 +33,8 @@ public final class Main {
 				.body("Magpie Bridge Notification setup complete!")
 				.build();
 		Notifier.send(finish_setup);
+
+		LOGGER.info("MagpieBridge has been loaded!");
 	}
 
 	private static void updater(){

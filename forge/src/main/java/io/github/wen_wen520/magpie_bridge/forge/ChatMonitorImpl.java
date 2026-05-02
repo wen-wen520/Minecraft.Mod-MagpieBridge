@@ -1,42 +1,35 @@
 package io.github.wen_wen520.magpie_bridge.forge;
 
 import java.util.UUID;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import io.github.wen_wen520.magpie_bridge.GeneralMessage;
-import io.github.wen_wen520.magpie_bridge.MessagePipeline;
-import io.github.wen_wen520.magpie_bridge.Notifier;
-import io.github.wen_wen520.magpie_bridge.utils.SkinResource;
-
+import io.github.wen_wen520.magpie_bridge.*;
 
 @Mod.EventBusSubscriber(modid = "magpie_bridge", bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ChatMonitorImpl {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger("MagpieBridge");
-
 	public static void init() {
-		LOGGER.info("ChatMonitorImpl initialized.");
+		Main.LOGGER.info("[Forge] ChatMonitorImpl initialized.");
 	}
 
 	@SubscribeEvent
 	public static void onClientChatReceived(ClientChatReceivedEvent event) {
+
+		if (!Utils.isNotificationOn()) {
+			return;
+		}
+
 		if (event instanceof ClientChatReceivedEvent.Player playerEvent) {
-			LOGGER.info("Received player chat: {}", playerEvent.getMessage().getString());
 			handlePlayerChat(playerEvent);
 		}
-		else if (event instanceof ClientChatReceivedEvent.System systemEvent) {
-			LOGGER.info("Received System chat: {}", systemEvent.getMessage());
+		else if (event instanceof ClientChatReceivedEvent.System systemEvent && !event.isCanceled()) {
 			handleSystemChat(systemEvent);
 		}
 	}
 
+	// Received Player Chat Message
 	private static void handlePlayerChat(ClientChatReceivedEvent.Player event) {
 
 		String rawName = event.getBoundChatType().name().getString();
@@ -58,23 +51,19 @@ public class ChatMonitorImpl {
 
 			try {
 				Notifier.send(builder.build());
-				LOGGER.info("{}: {} has been sent to the server.", senderName, messageBody);
 			}
 			catch (Exception notifyException) {
-				LOGGER.error("Failed to send notification for {}: {}", senderName, messageBody, notifyException);
+				Main.LOGGER.error("Failed to send notification for chat message from {}: {}", senderName, notifyException.getMessage());
 			}
 		});
 	}
 
+	// Received System Message
 	private static void handleSystemChat(ClientChatReceivedEvent.System event) {
-
-		if (event.isOverlay()) {
-			return;
-		}
 
 		String rawText = event.getMessage().getString();
 
 		// TODO: handle non-overlay system messages.
-		LOGGER.debug("Received system chat (currently ignored): {}", event.getMessage().getString());
+		Main.LOGGER.info("Received system chat: {}", rawText);
 	}
 }

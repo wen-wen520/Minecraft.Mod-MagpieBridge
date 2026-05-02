@@ -1,63 +1,64 @@
 package io.github.wen_wen520.magpie_bridge.fabric;
 
-import io.github.wen_wen520.magpie_bridge.GeneralMessage;
-import io.github.wen_wen520.magpie_bridge.MessagePipeline;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
-
-import me.shedaniel.autoconfig.AutoConfig;
-
-import io.github.wen_wen520.magpie_bridge.Notifier;
-import io.github.wen_wen520.magpie_bridge.settings.MainSettings;
-import io.github.wen_wen520.magpie_bridge.utils.SkinResource;
+import io.github.wen_wen520.magpie_bridge.*;
 
 public final class ChatMonitorImpl {
 
 	private static void init() {
 		onClientChatReceived();
+		Main.LOGGER.info("[Fabric] ChatMonitorImpl initialized.");
 	}
 
 	public static void onClientChatReceived() {
 
+		// Received Player Chat Message
 		ClientReceiveMessageEvents.CHAT.register((message, signedMessage, sender, params, _temp) -> {
 
-			MainSettings config = AutoConfig.getConfigHolder(MainSettings.class).getConfig();
-
-			String sender_name;
-			String message_body = MessagePipeline.ClearBodyStyle(message.getString());
-
-			if (sender == null) {
-				sender_name = "Unknown";
-			}
-			else {
-				sender_name = sender.getName();
+			if (!Utils.isNotificationOn()) {
+				return;
 			}
 
-		try {
-			SkinResource.getPlayerHead(sender_name).thenAccept(path ->
-					Notifier.send(GeneralMessage.builder()
-						.title(sender_name)
-						.body(message_body)
-						.icon(path)
-						.build())
-			);
-		}
-		catch (Exception e) {
-			System.err.println("Failed to fetch player head for " + sender_name + ": " + e.getMessage());
-			Notifier.send(GeneralMessage.builder()
-				.title(sender_name)
-				.body(message_body)
-				.build());
-		}
+			String rawName = sender.getName();
+			String rawBody = message.getString();
+
+			if (rawName.isEmpty()){
+				rawName = "Unknown";
+			}
+
+			final String senderName = MessagePipeline.ClearNameStyle(rawName);
+			final String messageBody = MessagePipeline.ClearBodyStyle(rawBody);
+
+			SkinResource.getPlayerHead(senderName).whenComplete((path, throwable) -> {
+				GeneralMessage.Builder builder = GeneralMessage.builder()
+						.title(senderName)
+						.body(messageBody)
+						.icon(path);
+
+				try {
+					Notifier.send(builder.build());
+				}
+				catch (Exception notifyException) {
+					Main.LOGGER.error("Failed to send notification for chat message from {}: {}", senderName, notifyException.getMessage());
+				}
+			});
 		});
 
+		// Received System Message
 		ClientReceiveMessageEvents.GAME.register((message, overlay) -> {
-					if (overlay){
-						return;
-					}
 
-					//todo: use message pipeline
-				}
+			if (overlay){
+				return;
+			}
 
-		);
+			if (Utils.isNotificationOn()) {
+				return;
+			}
+
+			String rawText = message.getString();
+
+			// TODO: handle non-overlay system messages.
+			Main.LOGGER.info("Received system chat: {}", rawText);
+		});
 	}
 }

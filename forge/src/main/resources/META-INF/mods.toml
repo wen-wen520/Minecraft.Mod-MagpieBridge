@@ -11,7 +11,7 @@ authors = "wen_wen520"
 description = '''
 A bridge between in game chat and system notification
 '''
-logoFile = "/assets/icon.png"
+logoFile = "assets/magpie_bridge/icon.png"
 
 [[dependencies.magpie_bridge]]
 modId = "forge"
@@ -26,4 +26,3 @@ mandatory = true
 versionRange = "[1.20,)"
 ordering = "NONE"
 side = "BOTH"
-

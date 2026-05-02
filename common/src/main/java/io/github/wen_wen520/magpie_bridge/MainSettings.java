@@ -1,4 +1,4 @@
-package io.github.wen_wen520.magpie_bridge.settings;
+package io.github.wen_wen520.magpie_bridge;
 
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.*;
