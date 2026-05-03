@@ -12,19 +12,19 @@ import io.github.wen_wen520.magpie_bridge.MainSettings;
 @Mod(Main.MOD_ID)
 public final class MainForge {
 
-    public MainForge() {
+	public MainForge() {
 
-        Main.init();
+		Main.init();
 
-        // Register Settings Entry Point
-        ModLoadingContext.get().registerExtensionPoint(
-                ConfigScreenHandler.ConfigScreenFactory.class,
-                () -> new ConfigScreenHandler.ConfigScreenFactory((client, parent) ->
-                        AutoConfig.getConfigScreen(MainSettings.class, parent).get()
-                )
-        );
-    }
+		// Register Settings Entry Point
+		ModLoadingContext.get().registerExtensionPoint(
+				ConfigScreenHandler.ConfigScreenFactory.class,
+				() -> new ConfigScreenHandler.ConfigScreenFactory((client, parent) ->
+						AutoConfig.getConfigScreen(MainSettings.class, parent).get()
+				)
+		);
+	}
 
-    public static void LoadResource() {}
+	public static void LoadResource() {}
 
 }

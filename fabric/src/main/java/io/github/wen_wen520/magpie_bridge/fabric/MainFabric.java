@@ -4,13 +4,13 @@ import io.github.wen_wen520.magpie_bridge.Main;
 import net.fabricmc.api.ModInitializer;
 
 public final class MainFabric implements ModInitializer {
-    @Override
-    public void onInitialize() {
-        // This code runs as soon as Minecraft is in a mod-load-ready state.
-        // However, some things (like resources) may still be uninitialized.
-        // Proceed with mild caution.
+	@Override
+	public void onInitialize() {
+		// This code runs as soon as Minecraft is in a mod-load-ready state.
+		// However, some things (like resources) may still be uninitialized.
+		// Proceed with mild caution.
 
-        // Run our common setup.
-        Main.init();
-    }
+		// Run our common setup.
+		Main.init();
+	}
 }
