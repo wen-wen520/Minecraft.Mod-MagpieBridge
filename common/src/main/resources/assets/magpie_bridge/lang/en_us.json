@@ -1,12 +1,12 @@
 {
-  "text.autoconfig.magpie_bridge/main_settings.title": "Magpie Bridge Settings",
-  "text.autoconfig.magpie_bridge/main_settings.option.main_toggle": "Main Toggle Enable This Mod",
-  "text.autoconfig.magpie_bridge/main_settings.option.send_desktop_notification": "Enable Desktop Notifications",
-  "text.autoconfig.magpie_bridge/main_settings.option.only_background": "Only Send Notifications When Game is in Background",
-  "text.autoconfig.magpie_bridge/main_settings.option.hypixel": "Hypixel Integration",
-  "text.autoconfig.magpie_bridge/main_settings.option.hypixel.main_toggle": "Enable Hypixel Integration",
-  "text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_toggle": "Enable SkyBlock Integration",
-  "text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_player": "Enable SkyBlock Player Events",
-  "text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_bazaar": "Enable SkyBlock Bazaar Events",
-  "text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_auction": "Enable SkyBlock Auction Events"
+	"text.autoconfig.magpie_bridge/main_settings.title": "Magpie Bridge Settings",
+	"text.autoconfig.magpie_bridge/main_settings.option.main_toggle": "Main Toggle Enable This Mod",
+	"text.autoconfig.magpie_bridge/main_settings.option.send_desktop_notification": "Enable Desktop Notifications",
+	"text.autoconfig.magpie_bridge/main_settings.option.only_background": "Only Send Notifications When Game is in Background",
+	"text.autoconfig.magpie_bridge/main_settings.option.hypixel": "Hypixel Integration",
+	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.main_toggle": "Enable Hypixel Integration",
+	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_toggle": "Enable SkyBlock Integration",
+	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_player": "Enable SkyBlock Player Events",
+	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_bazaar": "Enable SkyBlock Bazaar Events",
+	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_auction": "Enable SkyBlock Auction Events"
 }
