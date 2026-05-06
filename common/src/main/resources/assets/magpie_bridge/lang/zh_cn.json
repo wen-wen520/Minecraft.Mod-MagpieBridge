@@ -1,8 +1,8 @@
 {
 	"text.autoconfig.magpie_bridge/main_settings.title": "鹊桥通知 设置",
 	"text.autoconfig.magpie_bridge/main_settings.option.main_toggle": "总开关 是否启用此模组",
-	"text.autoconfig.magpie_bridge/main_settings.option.send_desktop_notification": "启用桌面通知",
-	"text.autoconfig.magpie_bridge/main_settings.option.only_background": "仅在游戏处于后台时推送桌面通知",
+	"text.autoconfig.magpie_bridge/main_settings.option.only_others": "仅推送其他玩家的消息",
+	"text.autoconfig.magpie_bridge/main_settings.option.only_background": "仅处于后台时推送通知",
 	"text.autoconfig.magpie_bridge/main_settings.option.hypixel": "Hypixel 联动",
 	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.main_toggle": "启用 Hypixel 联动",
 	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_toggle": "启用 SkyBlock 模块",

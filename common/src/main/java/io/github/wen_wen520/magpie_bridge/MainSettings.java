@@ -7,7 +7,7 @@ import me.shedaniel.autoconfig.annotation.*;
 public class MainSettings implements ConfigData {
 
 	public boolean main_toggle = true;
-	public boolean send_desktop_notification = true;
+	public boolean only_others = false;
 	public boolean only_background = false;
 
 	@ConfigEntry.Gui.CollapsibleObject

@@ -54,13 +54,13 @@ public final class LoadResource {
 
 	// Load the bridge to targeted platform
 	private static void initBridge() throws IOException, RuntimeException {
-		if (Util.getPlatform() == Util.OS.WINDOWS) {
+		if (Main.OS == Util.OS.WINDOWS) {
 			Utils.loadFiles("/assets/magpie_bridge/toast.exe", Main.BRIDGE_WIN);
 		}
-		else if (Util.getPlatform() == Util.OS.OSX) {
+		else if (Main.OS == Util.OS.OSX) {
 			throw new RuntimeException("[Error] Mac OS is not supported");
 		}
-		else if (Util.getPlatform() == Util.OS.LINUX) {
+		else if (Main.OS == Util.OS.LINUX) {
 			throw new RuntimeException("[Error] LINUX is not supported");
 		}
 		else {

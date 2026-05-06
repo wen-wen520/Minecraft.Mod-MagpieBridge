@@ -1,28 +1,37 @@
 package io.github.wen_wen520.magpie_bridge;
 
 import net.minecraft.Util;
-
 import java.io.IOException;
-
-import static io.github.wen_wen520.magpie_bridge.Main.BRIDGE_WIN;
 
 public final class Notifier {
 
-	public static void send(GeneralMessage msg){
-		var os = Util.getPlatform();
+	private static final String playerName = Utils.getPlayerName();
 
-		if (os == Util.OS.WINDOWS) {
+	public static void send(GeneralMessage msg){
+
+		if (Main.Settings.only_others && msg.title.equals(playerName)) {
+			return;
+		}
+
+		if (Main.OS == Util.OS.WINDOWS) {
 			sendWindows(msg);
 		}
-		else if (os == Util.OS.OSX) {
+		else if (Main.OS == Util.OS.OSX) {
 			sendMac(msg);
+		}
+		else if (Main.OS == Util.OS.LINUX){
+			sendLinux(msg);
+		}
+		else {
+			Main.LOGGER.error("Failed to send notification: Unsupported OS");
 		}
 	}
 
-	public static void sendWindows(GeneralMessage message) {
+	private static void sendWindows(GeneralMessage message) {
+
 		// Use Windows Bridge CLI to send message
 		ProcessBuilder builder = new ProcessBuilder(
-				BRIDGE_WIN.toAbsolutePath().toString(),
+				Main.BRIDGE_WIN.toAbsolutePath().toString(),
 				"-app-id", message.app,
 				"-title", message.title,
 				"-message", message.body,
@@ -35,12 +44,15 @@ public final class Notifier {
 			builder.start();
 		}
 		catch (IOException e) {
-			System.err.println("Failed to send notification: " + e.getMessage());
+			Main.LOGGER.error("[Windows] Failed to send notification {}: {}", message.title, e.getMessage());
 		}
 	}
 
-	public static void sendMac(GeneralMessage message) {
-		return;
+	private static void sendMac(GeneralMessage message) {
+		Main.LOGGER.error("[Mac] Failed to send notification {}: {}", message.title, message.body);
 	}
 
+	private static void sendLinux(GeneralMessage message) {
+		Main.LOGGER.error("[Linux] Failed to send notification {}: {}", message.title, message.body);
+	}
 }

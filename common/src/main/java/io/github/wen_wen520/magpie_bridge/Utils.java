@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import org.jetbrains.annotations.NotNull;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 
@@ -18,6 +19,14 @@ public final class Utils {
 	@ExpectPlatform
 	public static Path getConfigDir() {
 		throw new AssertionError();
+	}
+
+	public static String getPlayerName() {
+		LocalPlayer player = Minecraft.getInstance().player;
+		if (player != null) {
+			return player.getGameProfile().getName();
+		}
+		return "Unknown";
 	}
 
 	public static boolean isForeground() {
@@ -65,12 +74,12 @@ public final class Utils {
 		if (Files.notExists(root)) return;
 
 		// Initialize file visitor
-		Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
+		Files.walkFileTree(root, new SimpleFileVisitor<>() {
 
 			// Go through files first
 			@Override
 			@NotNull
-			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+			public FileVisitResult visitFile(@NotNull Path file, @NotNull BasicFileAttributes attrs) throws IOException {
 				Files.delete(file);
 				return FileVisitResult.CONTINUE;
 			}
@@ -78,7 +87,7 @@ public final class Utils {
 			// Then go through directories
 			@Override
 			@NotNull
-			public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+			public FileVisitResult postVisitDirectory(@NotNull Path dir, IOException exc) throws IOException {
 				if (exc != null) throw exc;
 				Files.delete(dir);
 				return FileVisitResult.CONTINUE;
@@ -87,7 +96,7 @@ public final class Utils {
 			// Handle errors
 			@Override
 			@NotNull
-			public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+			public FileVisitResult visitFileFailed(@NotNull Path file, @NotNull IOException exc) {
 				System.err.println("Not able to delete: " + file + ", due to" + exc.getMessage());
 				return FileVisitResult.TERMINATE;
 			}
