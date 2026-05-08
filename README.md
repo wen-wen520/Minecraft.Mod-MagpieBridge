@@ -2,7 +2,7 @@
 🌐
 <a href="https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge">English</a>
 &nbsp;|&nbsp;
-<a href="https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/README.zh.md">中文</a>
+<a href="README.zh-cn.md">中文</a>
 </div>
 
 <div align="center">
@@ -57,33 +57,16 @@ Fabric: 0.16.10 or higher
 
 Modrinth [[⬇️ Download]](https://modrinth.com/mod/magpiebridge/versions) provides a modern UI to choose and download this mod
 
-Github [[📦 Releases]](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/releases) Page is good to get the source code and pack them by self
+GitHub [[📦 Releases]](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/releases) Page is good to get the source code and pack them by self
 
 ## ⚙️ Configuration
 
 ### File Location:
-`.minecraft\config\magpiebridge`\
-Not recommended to edit\
-will reset to default when mod updates or downgrades, unless `keepConfigDir` is set to `true` in `magpiebridge.json`
+`.minecraft\config\magpiebridge`
 
->[!WARNING]\
->Setting `keepConfigDir` to `true` can cause serious issues when mod updates or downgrades.\
->**Please do not change the default value unless you know what you are doing.**
+## 📃 Feedback
 
-### Config Options:
-
-| Key | Description | Range | Default | In-game Edit Command |
-|-----|-------------|-------|---------|---------|
-| modVersion | Current mod version | System | Current | Not Editable |
-| keepConfigDir | Keep config directory when mod updates or downgrades | System | false | `magpiebridge config general keepConfigDir [Enable: Boolean]` |
-| notificationsEnabled | Toggle all desktop notifications | All | true | `magpiebridge config general desktopNotifications [Enable: Boolean]` |
-| playerNotifications | Toggle player chats | Hypixel Skyblock | true | `magpiebridge config notifications skyblock player [Enable: Boolean]` |
-| bazaarNotifications | Toggle bazaar messages | Hypixel Skyblock | true | `magpiebridge config notifications skyblock bazaar [Enable: Boolean]` |
-| auctionNotifications | Toggle auction messages | Hypixel Skyblock | true | `magpiebridge config notifications skyblock auctions [Enable: Boolean]` |
-
-## 📃 Feeadbacks
-
-Welcome to [📑Issue Page](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/issues/new/choose) to submit any bugs or featuers.
+Welcome to [📑Issue Page](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/issues/new/choose) to submit any bugs or features.
 
 ## 📜 License
 

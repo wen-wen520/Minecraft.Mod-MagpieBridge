@@ -2,7 +2,7 @@
 🌐
 <a href="https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge">English</a>
 &nbsp;|&nbsp;
-<a href="https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/README.zh.md">中文</a>
+<a href="README.zh-cn.md">中文</a>
 </div>
 
 <div align="center">
@@ -32,15 +32,15 @@ Magpie Bridge 是一个轻量级的 Minecraft 模组，可以将你的游戏内�
 
 [Modrinth 画廊](https://modrinth.com/mod/magpiebridge/gallery)
 
-![普通模式](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/assets/gallery/Introduction.jpg?raw=true)
+![普通模式](assets/gallery/Introduction.jpg)
 
 <br>
 
-![深色模式](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/assets/gallery/Dark%20Mode.jpg?raw=true)
+![深色模式](assets/gallery/Dark%20Mode.jpg)
 
 <br>
 
-![通知中心](https://github.com/wen-wen520/Minecraft.Mod-MagpieBridge/blob/master/assets/gallery/Norification%20Center.jpg?raw=true)
+![通知中心](assets/gallery/Notification%20Center.jpg)
 
 ## ⚙️ 要求
 
@@ -68,26 +68,7 @@ Fabric: 0.16.10 或更高
 ## ⚙️ 配置
 
 ### 文件位置：
-`.minecraft\config\magpiebridge`\
-不推荐手动编辑配置文件\
-该目录下所有文件会在模组更新或降级时重置为默认值，\
-除非在 `magpiebridge.json` 中将 `keepConfigDir` 设置为 `true`
-
->[!WARNING]\
->将 `keepConfigDir` 设置为 `true` 可能会在模组更新或降级时引发严重问题。\
->**请不要更改默认值，除非你非常清楚自己在做什么。**
-
-### 配置选项：
-| 键 | 描述 | 适用范围 | 默认值 | 游戏内编辑命令 |
-|-----|-------------|-------|---------|---------|
-| modVersion | 当前模组版本 | 系统 | 当前版本 | 不可编辑 |
-| keepConfigDir | 在模组更新或降级时保留配置目录 | 系统 | false | `magpiebridge config general keepConfigDir [是否启用]` |
-| notificationsEnabled | 所有桌面通知 | 全部 | true | `magpiebridge config general desktopNotifications [是否启用]` |
-| playerNotifications | 玩家聊天通知 | Hypixel 空岛 | true | `magpiebridge config notifications skyblock player [是否启用]` |
-| bazaarNotifications | 集市消息通知 | Hypixel 空岛 | true | `magpiebridge config notifications skyblock bazaar [是否启用]` |
-| auctionNotifications | 拍卖消息通知 | Hypixel 空岛 | true | `magpiebridge config notifications skyblock auctions [是否启用]` |
-
-
+`.minecraft\config\magpiebridge`
 
 ## 📃 反馈
 
@@ -96,7 +77,7 @@ Fabric: 0.16.10 或更高
 
 ## 📜 许可
 
-[保留所有权力](LICENSE.md)
+[保留所有权力](LICENSE.txt)
 
 ## 🎉 致谢
 
