@@ -27,7 +27,7 @@ public final class Main {
 		AutoConfig.register(MainSettings.class, GsonConfigSerializer::new);
 		Settings = AutoConfig.getConfigHolder(MainSettings.class).getConfig();
 
-		LoadResource.init();
+		ResourceManager.init();
 		ChatMonitor.init();
 
 		GeneralMessage finish_setup = GeneralMessage.builder()
