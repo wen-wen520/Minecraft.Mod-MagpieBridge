@@ -62,8 +62,7 @@ public class ChatMonitorImpl {
 	private static void handleSystemChat(ClientChatReceivedEvent.System event) {
 
 		String rawText = event.getMessage().getString();
+		MessagePipeline.ProcessSystemMessage(rawText);
 
-		// TODO: handle non-overlay system messages.
-		Main.LOGGER.info("Received system chat: {}", rawText);
 	}
 }
