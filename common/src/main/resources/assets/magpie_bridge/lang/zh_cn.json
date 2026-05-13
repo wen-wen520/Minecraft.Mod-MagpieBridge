@@ -1,12 +1,16 @@
 {
+	"text.autoconfig.magpie_bridge/main_settings.category.general": "通用",
+	"text.autoconfig.magpie_bridge/main_settings.category.hypixel": "Hypixel 联动",
 	"text.autoconfig.magpie_bridge/main_settings.title": "鹊桥通知 设置",
 	"text.autoconfig.magpie_bridge/main_settings.option.main_toggle": "总开关 是否启用此模组",
 	"text.autoconfig.magpie_bridge/main_settings.option.only_others": "仅推送其他玩家的消息",
 	"text.autoconfig.magpie_bridge/main_settings.option.only_background": "仅处于后台时推送通知",
-	"text.autoconfig.magpie_bridge/main_settings.option.hypixel": "Hypixel 联动",
+	"text.autoconfig.magpie_bridge/main_settings.option.include_system": "包含系统消息",
+	"text.autoconfig.magpie_bridge/main_settings.option.include_system.@Tooltip": "一些自定义服务器消息可能会修改玩家消息并以系统消息的形式重新发送，启用此选项可能会让你收到更多通知。但它也可能导致一些不必要的消息被发送。",
+	"text.autoconfig.magpie_bridge/main_settings.option.skyblock": "Skyblock 联动",
 	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.main_toggle": "启用 Hypixel 联动",
-	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_toggle": "启用 SkyBlock 模块",
-	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_player": "SkyBlock 玩家消息",
-	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_bazaar": "SkyBlock 商人 消息",
-	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.skyblock_auction": "SkyBlock 拍卖行 消息"
+	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.main_toggle": "启用 SkyBlock 模块",
+	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.player": "SkyBlock 玩家消息",
+	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.bazaar": "SkyBlock 商人 消息",
+	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.auction": "SkyBlock 拍卖行 消息"
 }

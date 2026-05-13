@@ -6,19 +6,35 @@ import me.shedaniel.autoconfig.annotation.*;
 @Config(name = "magpie_bridge/main_settings")
 public class MainSettings implements ConfigData {
 
+	@ConfigEntry.Category("general")
 	public boolean main_toggle = true;
+
+	@ConfigEntry.Category("general")
 	public boolean only_others = false;
+
+	@ConfigEntry.Category("general")
 	public boolean only_background = false;
 
-	@ConfigEntry.Gui.CollapsibleObject
-	Hypixel hypixel = new Hypixel();
+	@ConfigEntry.Category("general")
+	@ConfigEntry.Gui.Tooltip
+	public boolean include_system = false;
 
-	public static class Hypixel {
+	@ConfigEntry.Category("hypixel")
+	public boolean hypixel_main_toggle = true;
+
+	@ConfigEntry.Category("hypixel")
+	@ConfigEntry.Gui.Excluded
+	public boolean isInHypixel = false;
+
+	@ConfigEntry.Category("hypixel")
+	@ConfigEntry.Gui.CollapsibleObject
+	Skyblock skyblock = new Skyblock();
+
+	public static class Skyblock {
 		boolean main_toggle = true;
-		boolean skyblock_toggle = true;
-		boolean skyblock_player =  true;
-		boolean skyblock_bazaar =  true;
-		boolean skyblock_auction =  true;
+		boolean player =  true;
+		boolean bazaar =  true;
+		boolean auction =  true;
 	}
 
 }

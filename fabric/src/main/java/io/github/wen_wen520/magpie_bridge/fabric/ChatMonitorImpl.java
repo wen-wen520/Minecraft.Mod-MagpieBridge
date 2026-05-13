@@ -51,7 +51,7 @@ public final class ChatMonitorImpl {
 				return;
 			}
 
-			if (Utils.isNotificationOn()) {
+			if (Utils.isNotificationOn() && Main.Settings.include_system) {
 				return;
 			}
 

@@ -24,7 +24,7 @@ public class ChatMonitorImpl {
 		if (event instanceof ClientChatReceivedEvent.Player playerEvent) {
 			handlePlayerChat(playerEvent);
 		}
-		else if (event instanceof ClientChatReceivedEvent.System systemEvent && !event.isCanceled()) {
+		else if (Main.Settings.include_system && event instanceof ClientChatReceivedEvent.System systemEvent && !event.isCanceled()) {
 			handleSystemChat(systemEvent);
 		}
 	}
