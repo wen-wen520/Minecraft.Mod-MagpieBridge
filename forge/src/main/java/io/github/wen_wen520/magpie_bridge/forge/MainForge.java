@@ -4,10 +4,8 @@ import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 
-import me.shedaniel.autoconfig.AutoConfig;
-
 import io.github.wen_wen520.magpie_bridge.Main;
-import io.github.wen_wen520.magpie_bridge.MainSettings;
+import io.github.wen_wen520.magpie_bridge.configs.GeneralConfigScreen;
 
 @Mod(Main.MOD_ID)
 public final class MainForge {
@@ -20,7 +18,7 @@ public final class MainForge {
 		ModLoadingContext.get().registerExtensionPoint(
 				ConfigScreenHandler.ConfigScreenFactory.class,
 				() -> new ConfigScreenHandler.ConfigScreenFactory((client, parent) ->
-						AutoConfig.getConfigScreen(MainSettings.class, parent).get()
+						GeneralConfigScreen.create(parent)
 				)
 		);
 	}

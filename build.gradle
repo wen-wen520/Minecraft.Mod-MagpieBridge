@@ -12,8 +12,15 @@ allprojects {
 	group = rootProject.maven_group
 	version = rootProject.mod_version
 	repositories {
-		maven { url "https://maven.shedaniel.me/" }
 		maven { url = "https://maven.terraformersmc.com/releases/" }
+		maven {
+			name 'Xander Maven'
+			url 'https://maven.isxander.dev/releases'
+		}
+		maven {
+			name = "Kotlin for Forge"
+			url = "https://thedarkcolour.github.io/KotlinForForge/"
+		}
 	}
 }
 

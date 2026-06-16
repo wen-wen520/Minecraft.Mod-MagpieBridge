@@ -33,8 +33,7 @@ configurations {
 dependencies {
 	forge "net.minecraftforge:forge:$rootProject.forge_version"
 
-	modApi "me.shedaniel.cloth:cloth-config-forge:$rootProject.cloth_config_version"
-
+	modCompileOnly ("dev.isxander:yet-another-config-lib:$rootProject.yacl_version-forge")
 
 	common(project(path: ':common', configuration: 'namedElements')) { transitive false }
 	shadowBundle project(path: ':common', configuration: 'transformProductionForge')

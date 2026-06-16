@@ -1,11 +1,11 @@
 package io.github.wen_wen520.magpie_bridge;
 
 import java.nio.file.Path;
+
+import io.github.wen_wen520.magpie_bridge.configs.GeneralConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import net.minecraft.Util;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
 public final class Main {
 
@@ -20,12 +20,12 @@ public final class Main {
 	public static final Path BRIDGE_DIR = CONFIG_DIR.resolve("bridge");
 	public static final Path BRIDGE_WIN = BRIDGE_DIR.resolve("toast.exe");
 
-	public static MainSettings Settings;
+	public static GeneralConfig Settings;
 
 	public static void init() {
 
-		AutoConfig.register(MainSettings.class, GsonConfigSerializer::new);
-		Settings = AutoConfig.getConfigHolder(MainSettings.class).getConfig();
+		GeneralConfig.HANDLER.load();
+		Settings = GeneralConfig.HANDLER.instance();
 
 		ResourceManager.init();
 		ChatMonitor.init();

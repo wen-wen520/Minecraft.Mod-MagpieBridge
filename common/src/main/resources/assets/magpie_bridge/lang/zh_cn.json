@@ -1,16 +1,12 @@
 {
-	"text.autoconfig.magpie_bridge/main_settings.category.general": "通用",
-	"text.autoconfig.magpie_bridge/main_settings.category.hypixel": "Hypixel 联动",
-	"text.autoconfig.magpie_bridge/main_settings.title": "鹊桥通知 设置",
-	"text.autoconfig.magpie_bridge/main_settings.option.main_toggle": "总开关 是否启用此模组",
-	"text.autoconfig.magpie_bridge/main_settings.option.only_others": "仅推送其他玩家的消息",
-	"text.autoconfig.magpie_bridge/main_settings.option.only_background": "仅处于后台时推送通知",
-	"text.autoconfig.magpie_bridge/main_settings.option.include_system": "包含系统消息",
-	"text.autoconfig.magpie_bridge/main_settings.option.include_system.@Tooltip": "一些自定义服务器消息可能会修改玩家消息并以系统消息的形式重新发送，启用此选项可能会让你收到更多通知。但它也可能导致一些不必要的消息被发送。",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock": "Skyblock 联动",
-	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.main_toggle": "启用 Hypixel 联动",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.main_toggle": "启用 SkyBlock 模块",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.player": "SkyBlock 玩家消息",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.bazaar": "SkyBlock 商人 消息",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.auction": "SkyBlock 拍卖行 消息"
+	"wen_wen520.magpie_bridge.config.general.title": "鹊桥通知设置",
+	"wen_wen520.magpie_bridge.config.general.category": "通用",
+	"wen_wen520.magpie_bridge.config.general.main_toggle.name": "总开关",
+	"wen_wen520.magpie_bridge.config.general.main_toggle.description": "启用或禁用此模组。",
+	"wen_wen520.magpie_bridge.config.general.only_others.name": "仅通知其他玩家的消息",
+	"wen_wen520.magpie_bridge.config.general.only_others.description": "仅推送其他玩家发送的消息的通知。如果禁用，您也会收到自己消息的通知。",
+	"wen_wen520.magpie_bridge.config.general.only_background.name": "仅在后台推送通知",
+	"wen_wen520.magpie_bridge.config.general.only_background.description": "仅在游戏运行于后台时推送通知。",
+	"wen_wen520.magpie_bridge.config.general.include_system.name": "包含系统消息",
+	"wen_wen520.magpie_bridge.config.general.include_system.description": "一些自定义服务器消息可能会修改玩家消息并将其重新发送为系统消息，因此启用此选项可能会让您收到更多通知。但它也可能导致一些不必要的消息被发送。 "
 }

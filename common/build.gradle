@@ -7,6 +7,6 @@ dependencies {
 	// which get remapped to the correct annotations on each platform.
 	// Do NOT use other classes from Fabric Loader.
 	modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+	modImplementation "dev.isxander:yet-another-config-lib:$rootProject.yacl_version-fabric"
 	modApi "dev.architectury:architectury:9.2.14"
-	modApi "me.shedaniel.cloth:cloth-config:$rootProject.cloth_config_version"
 }

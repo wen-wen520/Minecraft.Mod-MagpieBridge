@@ -1,16 +1,12 @@
 {
-	"text.autoconfig.magpie_bridge/main_settings.category.general": "General",
-	"text.autoconfig.magpie_bridge/main_settings.category.hypixel": "Hypixel Integration",
-	"text.autoconfig.magpie_bridge/main_settings.title": "Magpie Bridge Settings",
-	"text.autoconfig.magpie_bridge/main_settings.option.main_toggle": "Main Toggle Enable This Mod",
-	"text.autoconfig.magpie_bridge/main_settings.option.only_others": "Only Notify Other Players' Messages",
-	"text.autoconfig.magpie_bridge/main_settings.option.only_background": "Only Push Notifications in Background",
-	"text.autoconfig.magpie_bridge/main_settings.option.include_system": "Include System Messages",
-	"text.autoconfig.magpie_bridge/main_settings.option.include_system.@Tooltip": "Some custom server messages may modify player message and resent them as system messages, so enabling this option may allow you to receive more notifications. However, it may also cause some unwanted messages to be sent.",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock": "Skyblock Integration",
-	"text.autoconfig.magpie_bridge/main_settings.option.hypixel.main_toggle": "Enable Hypixel Integration",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.main_toggle": "Enable SkyBlock Integration",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.player": "Enable SkyBlock Player Events",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.bazaar": "Enable SkyBlock Bazaar Events",
-	"text.autoconfig.magpie_bridge/main_settings.option.skyblock.auction": "Enable SkyBlock Auction Events"
+	"wen_wen520.magpie_bridge.config.general.title": "Magpie Bridge Settings",
+	"wen_wen520.magpie_bridge.config.general.category": "General",
+	"wen_wen520.magpie_bridge.config.general.main_toggle.name": "Enable Magpie Bridge",
+	"wen_wen520.magpie_bridge.config.general.main_toggle.description": "Enable or disable the mod.",
+	"wen_wen520.magpie_bridge.config.general.only_others.name": "Only Notify Other Players' Messages",
+	"wen_wen520.magpie_bridge.config.general.only_others.description": "Only push notifications for messages sent by other players. You will receive notifications for your own messages if disabled.",
+	"wen_wen520.magpie_bridge.config.general.only_background.name": "Only Push Notifications in Background",
+	"wen_wen520.magpie_bridge.config.general.only_background.description": "Only push notifications when the game is running in the background.",
+	"wen_wen520.magpie_bridge.config.general.include_system.name": "Include System Messages",
+	"wen_wen520.magpie_bridge.config.general.include_system.description": "Some custom server messages may modify player message and resent them as system messages, so enabling this option may allow you to receive more notifications. However, it may also cause some unwanted messages to be sent."
 }

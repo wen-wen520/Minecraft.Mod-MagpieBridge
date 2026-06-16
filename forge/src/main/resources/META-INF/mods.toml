@@ -14,6 +14,13 @@ A bridge between in game chat and system notification
 logoFile = "assets/magpie_bridge/icon.png"
 
 [[dependencies.magpie_bridge]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.magpie_bridge]]
 modId = "forge"
 mandatory = true
 versionRange = "[46,)"
@@ -21,8 +28,8 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.magpie_bridge]]
-modId = "minecraft"
+modId = "yet_another_config_lib_v3"
 mandatory = true
-versionRange = "[1.20,)"
+versionRange = "[3.6.1,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"

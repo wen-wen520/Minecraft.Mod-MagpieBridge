@@ -50,8 +50,15 @@ Magpie Bridge is a lightweight Minecraft mod that brings your in-game chat messa
 Architecture: x64\
 System: Windows 10 version 15063.0 or higher\
 Java: Java 21\
-Minecraft: 1.21 - 1.21.8\
-Fabric: 0.16.10 or higher
+Minecraft: 1.20-1.20.1\
+
+Fabric: 0.14.21
+Fabric API: 0.83.0
+YACL: 3.6.1
+Mod Menu: 9.0.0 (Optional)
+
+Forge: 46.0.14
+YACL: 3.6.1
 
 ## ✅ Installation
 
@@ -76,3 +83,5 @@ Welcome to [📑Issue Page](https://github.com/wen-wen520/Minecraft.Mod-MagpieBr
 
 [Go Toast / Toast](https://github.com/go-toast/toast) used to send system notifications.\
 Under the MIT License.
+
+[]
