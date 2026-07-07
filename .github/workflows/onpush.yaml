@@ -1,25 +1,9 @@
-name: Build
+name: Automatic Build on Push
 
 on:
-  workflow_dispatch:
-    inputs:
-      mod_name_full:
-        description: 'Complete mod name (optional, if set, will override mod_name-mod_version)'
-        required: false
-        type: string
-      mod_name:
-        description: 'Mod name (used if mod_name_full is not set)'
-        required: false
-        type: string
-      mod_version:
-        description: 'Mod version (used if mod_name_full is not set)'
-        required: false
-        type: string
-      is_suffix_required:
-        description: 'Add build suffix (-buildGITHUB_RUN_NUMBER)'
-        required: false
-        type: boolean
-        default: true
+  push:
+    branches:
+      - '*'
 
 permissions:
   contents: read
@@ -47,40 +31,9 @@ jobs:
       - name: Compose CI mod version
         shell: pwsh
         run: |
-          # Get inputs from workflow_dispatch if available
-          $mod_name_full = '${{ inputs.mod_name_full }}'
-          $mod_name = '${{ inputs.mod_name }}'
-          $mod_version = '${{ inputs.mod_version }}'
-          $is_suffix_required = '${{ inputs.is_suffix_required }}' -eq 'true'
-          
-          # Determine the final mod version
-          if ($mod_name_full) {
-            # If mod_name_full is provided, use it directly
-            $finalModVersion = $mod_name_full
-          } else {
-            # Otherwise, read default values from gradle.properties
-            $baseModname = (Get-Content gradle.properties | Where-Object { $_ -match '^archives_name=' }) -replace '^archives_name=', ''
-            $baseVersion = (Get-Content gradle.properties | Where-Object { $_ -match '^mod_version=' }) -replace '^mod_version=', ''
-            
-            # Override with inputs if provided (either or both can be provided)
-            if ($mod_name) { $baseModname = $mod_name }
-            if ($mod_version) { $baseVersion = $mod_version }
-            
-            # Validate that we have both required values
-            if (-not $baseModname -or -not $baseVersion) { 
-              throw "Could not determine mod_name and mod_version from inputs or gradle.properties" 
-            }
-            
-            # Compose as mod_name-mod_version
-            $finalModVersion = "$baseModname-$baseVersion"
-          }
-          
-          # Add build suffix if required (applies to both mod_name_full and mod_name-mod_version cases)
-          if ($is_suffix_required) {
-            $finalModVersion = "$finalModVersion-build$env:GITHUB_RUN_NUMBER"
-          }
-          
-          "ORG_GRADLE_PROJECT_mod_version=$finalModVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $baseVersion = (Get-Content gradle.properties | Where-Object { $_ -match '^mod_version=' }) -replace '^mod_version=', ''
+          if (-not $baseVersion) { throw "mod_version not found in gradle.properties" }
+          "ORG_GRADLE_PROJECT_mod_version=$baseVersion-alpha$env:GITHUB_RUN_NUMBER" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
       - name: Build with Gradle
         shell: pwsh
@@ -104,6 +57,7 @@ jobs:
 
             if ($jar) {
               "path=$($jar.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+              "name=$($jar.Name)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
             }
           }
 
@@ -111,7 +65,7 @@ jobs:
         if: steps.common_jar.outputs.path != ''
         uses: actions/upload-artifact@v4
         with:
-          name: common-jar
+          name: ${{ steps.common_jar.outputs.name }}
           path: ${{ steps.common_jar.outputs.path }}
           if-no-files-found: error
 
@@ -133,6 +87,7 @@ jobs:
 
             if ($jar) {
               "path=$($jar.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+              "name=$($jar.Name)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
             }
           }
 
@@ -140,8 +95,38 @@ jobs:
         if: steps.fabric_jar.outputs.path != ''
         uses: actions/upload-artifact@v4
         with:
-          name: fabric-jar
+          name: ${{ steps.fabric_jar.outputs.name }}
           path: ${{ steps.fabric_jar.outputs.path }}
+          if-no-files-found: error
+
+      - name: Locate quilt jar
+        shell: pwsh
+        id: quilt_jar
+        run: |
+          if (Test-Path 'quilt/build/libs') {
+            $jar = Get-ChildItem -Path 'quilt/build/libs' -File -Filter '*.jar' |
+              Where-Object {
+                $_.Name -notlike '*-sources.jar' -and
+                $_.Name -notlike '*-javadoc.jar' -and
+                $_.Name -notlike '*-dev.jar' -and
+                $_.Name -notlike '*-dev-shadow.jar' -and
+                $_.Name -notlike '*transformProduction*.jar'
+              } |
+              Sort-Object Name |
+              Select-Object -First 1
+
+            if ($jar) {
+              "path=$($jar.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+              "name=$($jar.Name)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+            }
+          }
+
+      - name: Upload quilt jar
+        if: steps.quilt_jar.outputs.path != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.quilt_jar.outputs.name }}
+          path: ${{ steps.quilt_jar.outputs.path }}
           if-no-files-found: error
 
       - name: Locate forge jar
@@ -162,6 +147,7 @@ jobs:
 
             if ($jar) {
               "path=$($jar.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+              "name=$($jar.Name)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
             }
           }
 
@@ -169,7 +155,7 @@ jobs:
         if: steps.forge_jar.outputs.path != ''
         uses: actions/upload-artifact@v4
         with:
-          name: forge-jar
+          name: ${{ steps.forge_jar.outputs.name }}
           path: ${{ steps.forge_jar.outputs.path }}
           if-no-files-found: error
 
@@ -191,6 +177,7 @@ jobs:
 
             if ($jar) {
               "path=$($jar.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+              "name=$($jar.Name)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
             }
           }
 
@@ -198,6 +185,6 @@ jobs:
         if: steps.neoforge_jar.outputs.path != ''
         uses: actions/upload-artifact@v4
         with:
-          name: neoforge-jar
+          name: ${{ steps.neoforge_jar.outputs.name }}
           path: ${{ steps.neoforge_jar.outputs.path }}
           if-no-files-found: error
